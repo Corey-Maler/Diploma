@@ -90,6 +90,7 @@ public:
         val = value;
     }
     
+public:
     Tenzor<T> * operator + (const Tenzor<T>& right)
     {
         Tenzor<T> * res = new Tenzor<T>();
@@ -99,6 +100,7 @@ public:
         return res;
     }
     
+public:
     Tenzor<T> * operator * (double a)
     {
         Tenzor<T> * res = new Tenzor<T>();

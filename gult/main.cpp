@@ -58,24 +58,16 @@ int main(int argc, const char * argv[]) {
     
     Vector3 * oo = (*ds)[2];
     
-    integrators::Steeps<Vector3>(as, bs);
+    //integrators::Steeps<Vector3>(as, bs);
     
-    std::cout << "Als " << (*oo)[2]->get() << std::endl;
+    //std::cout << "Als " << (*oo)[2]->get() << std::endl;
     
     std::clock_t    start;
-    
-    std::vector<int> v(1000100);
-    
     start = std::clock();
-    // your test
-    int j = 0;
-    for (int i = 0; i < 100; i++)
-    {
-        for (j = 0; j < 100; j++)
-        {
-            v.push_back(fx(i, j));
-        }
-    }
+    
+    Scene * scene = new Scene();
+    
+    scene->Run();
     
     std::cout << "Time: " << (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << " ms" << std::endl;
     

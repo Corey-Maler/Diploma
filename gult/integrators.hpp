@@ -28,19 +28,22 @@ namespace integrators {
     }
     
     template <typename V>
-    void Steeps(V * x0, V * y)
+    void Steeps(V* (*fx)(V *), V * x0, double dt)
     {
+        V* X = x0;
         bool go = true;
         while (go)
         {
             //std::cout << (*y)[0]->get() << std::endl;
+            
+            X = (*X) + *((*(fx(X))) * dt);
+            
             char a;
             std::cin >> a;
             switch (a) {
                 case 'e':
                     
                     break;
-                    
                 default:
                     go = false;
                     break;
