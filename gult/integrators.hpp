@@ -10,20 +10,21 @@
 #include <stdio.h>
 #include <iostream>
 #include "vector.hpp"
+#include "scene.hpp"
 #include <list>
 
 namespace integrators {
     
     template <typename V>
-    std::list<V *> * Euler(V* (*fx)(V *), V * x0, double t0, double dt, double te)
+    std::list<V *> * Euler(Scene *scene, double t0, double dt, double te)
     {
         std::list<V *> * path = new std::list<V *>();
         
-        V* X = x0;
+        V* X = scene->getX0();
         
         for (double t = t0; t < te; t += dt)
         {
-            X = (*X) + *((*(fx(X))) * dt);
+            X = (*X) + *((*(scene->F(X))) * dt);
             path->push_back(X);
         }
         

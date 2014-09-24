@@ -27,38 +27,20 @@ int fx(int x, int y)
 Vector3 v;
 
 int main(int argc, const char * argv[]) {
-    std::cout << "Hello, World!\n";
-   
-    Vector3 * as = new Vector3();
-    Vector3 * bs = new Vector3();
-
-    (*as)[0] = new Scalar(2.0);
-    (*bs)[0] = new Scalar(1.2);
+    std::cout << "Running integration...\n";
     
-    (*as)[1] = new Scalar(4.3);
-    (*bs)[1] = new Scalar(54.3);
-    
-    (*as)[2] = new Scalar(3.0);
-    (*bs)[2] = new Scalar(5.3);
-    
-    Vector3 * dd = *as + *bs;
-    
-
-
-    
-    //integrators::Steeps<Vector3>(as, bs);
-    
-    //std::cout << "Als " << (*oo)[2]->get() << std::endl;
-    
-    std::clock_t    start;
+    std::clock_t start;
     start = std::clock();
     
     Scene * scene = new Scene();
     
     scene->Run();
     
-    std::cout << "Time: " << (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << " ms" << std::endl;
+    std::list<BlockVector3d *> * path = integrators::Euler<BlockVector3d>(scene, 0, 0.1, 10);
     
-        
+    Draw3D<BlockVector3d *>(path, 0, 1, scene->getTargets());
+    
+    std::cout << "End of integration\n";
+    std::cout << "Time: " << (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << " ms" << std::endl;
     return 0;
 }

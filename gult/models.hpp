@@ -25,23 +25,34 @@ class drone
 {
 private:
     Vector2D * target;
-    Vector3 * position;
+    Vector3D * position;
     
     double VMax;
     double OMax;
-    double 龢 = 3;
-    
     
 public:
+    /**
+     * Описашка класса
+     */
     drone(double vmax, double omax)
     {
         VMax = vmax;
         OMax = omax;
     }
     
-    void setTarger(Vector2D * targ)
+    void setTarget(Vector2D * targ)
     {
         target = targ;
+    }
+    
+    void setPosition(Vector3D * pos)
+    {
+        position = pos;
+    }
+    
+    Vector3D * getPosition()
+    {
+        return position;
     }
     
     double AngleToTarget()
@@ -53,9 +64,9 @@ public:
         //return 0;
     }
     
-    Vector3 * rightPart(Vector3 * X)
+    Vector3D * rightPart(Vector3D * X)
     {
-        Vector3 * Y = new Vector3();
+        Vector3D * Y = new Vector3D(0, 0, 0);
         
         double omega = 0;
         double ang = AngleToTarget();

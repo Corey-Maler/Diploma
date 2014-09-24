@@ -40,11 +40,64 @@ void Draw(std::list<T> * path, int B1, int indX, int B2, int indY)
         xy_pts.push_back(std::make_pair(cos(theta), sin(theta)));
     }
     */
-    gp << "set xrange [-2:2]\nset yrange [-2:2]\n";
+    gp << "set xrange [-2:300]\nset yrange [-2:200]\n";
     gp << "plot '-' with lines title 'cubic' \n";
     gp.send1d(xy_pts);
-
 }
 
+template<typename T>
+void Draw3D(std::list<T> * path, int indX, int indY, std::vector<Vector2D *> * targets)
+{
+    gnuplotio::Gnuplot gp;
+    
+    std::vector<std::pair<double, double> > xy_pts1;
+    std::vector<std::pair<double, double> > xy_pts2;
+    std::vector<std::pair<double, double> > xy_pts3;
+    
+    std::vector<std::pair<double, double> > targs(3);
+    
+    std::vector<Vector2D *>::iterator tt;
+    
+    for (tt = targets->begin(); tt != targets->end(); tt++)
+    {
+        double x = (*tt)->getX();
+        double y = (*tt)->getY();
+        targs.push_back(std::make_pair(x, y));
+    }
+    
+    typename std::list<T>::iterator it;
+    
+    for (it = path->begin(); it != path->end(); it++)
+    {
+        double x1 = (*(*it))[0]->get(indX)->get();
+        double y1 = (*(*it))[0]->get(indY)->get();
+        
+        xy_pts1.push_back(std::make_pair(x1, y1));
+        
+        double x2 = (*(*it))[1]->get(indX)->get();
+        double y2 = (*(*it))[1]->get(indY)->get();
+        
+        xy_pts2.push_back(std::make_pair(x2, y2));
+        
+        double x3 = (*(*it))[2]->get(indX)->get();
+        double y3 = (*(*it))[2]->get(indY)->get();
+        
+        xy_pts3.push_back(std::make_pair(x3, y3));
+        
+    }
+    /*
+     for (double alpha = 0; alpha < 1; alpha += 1.0 / 24.0)
+     {
+     double theta = alpha*2.0*3.14159;
+     xy_pts.push_back(std::make_pair(cos(theta), sin(theta)));
+     }
+     */
+    gp << "set xrange [-2:300]\nset yrange [-2:200]\n";
+    gp << "plot '-' with lines title 'dron 1', '-' with lines title 'dron 2', '-' with lines title 'dron 3', '-' with points title 'targets' \n";
+    gp.send1d(xy_pts1);
+    gp.send1d(xy_pts2);
+    gp.send1d(xy_pts3);
+    gp.send1d(targs);
+}
 
 #endif

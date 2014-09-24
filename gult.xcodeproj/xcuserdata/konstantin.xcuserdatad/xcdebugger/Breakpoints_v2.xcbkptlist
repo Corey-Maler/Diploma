@@ -56,11 +56,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "gult/integrators.hpp"
-            timestampString = "433269545.671185"
+            timestampString = "433280548.083382"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "Steeps(V* (*fx)(V *), V * x0, double dt)"
             landmarkType = "7">
          </BreakpointContent>
@@ -79,22 +79,6 @@
             endingLineNumber = "43"
             landmarkName = "Draw(std::list&lt;T&gt; * path, int B1, int indX, int B2, int indY)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "gult/scene.hpp"
-            timestampString = "433270770.652737"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "F (BlockVector3d * X)"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

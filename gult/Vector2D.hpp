@@ -16,6 +16,11 @@
 class Vector2D: Vector<2, Scalar *>
 {
 public:
+    Vector2D(double x, double y)
+    {
+        arr[0] = new Scalar(x);
+        arr[1] = new Scalar(y);
+    }
     double getX()
     {
         return arr[0]->get();
