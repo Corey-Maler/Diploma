@@ -10,21 +10,10 @@
 #include <vector>
 #include <list>
 
-#include "vector.hpp"
-#include "integrators.hpp"
 #include "Vector2D.hpp"
-#include "models.hpp"
+#include "integrators.hpp"
 #include "scene.hpp"
 #include "draw.hpp"
-
-#include "gnuplot-iostream.h"
-
-int fx(int x, int y)
-{
-    return x * (y - 1);
-}
-
-Vector3 v;
 
 int main(int argc, const char * argv[]) {
     std::cout << "Running integration...\n";
@@ -36,9 +25,10 @@ int main(int argc, const char * argv[]) {
     
     scene->Run();
     
-    std::list<BlockVector3d *> * path = integrators::Euler<BlockVector3d>(scene, 0, 0.1, 10);
+    std::list<BlockVector3d *> * path = integrators::Euler<BlockVector3d>(scene, 0, 0.1, 150);
     
     Draw3D<BlockVector3d *>(path, 0, 1, scene->getTargets());
+    Draw1D(path, 0, 2);
     
     std::cout << "End of integration\n";
     std::cout << "Time: " << (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << " ms" << std::endl;

@@ -16,6 +16,8 @@
 
 #include "Vector2D.hpp"
 
+#define PI 3.14159265359
+
 class models
 {
     
@@ -59,9 +61,8 @@ public:
     {
         double x = target->getX() - (*position)[0]->get();
         double y = target->getY() - (*position)[1]->get();
-        
-        return atan2(y, x);
-        //return 0;
+        double a = atan2(y, x);
+        return a - position->getZ();
     }
     
     Vector3D * rightPart(Vector3D * X)
@@ -73,11 +74,26 @@ public:
         if (ang > EPS) omega = OMax;
         if (ang < -EPS) omega = -OMax;
         
-        (*Y)[0] = new Scalar(VMax * (*X)[2]->sin());
-        (*Y)[1] = new Scalar(VMax * (*X)[2]->cos());
+        //omega = 0;
+        
+        (*Y)[0] = new Scalar(VMax * (*X)[2]->cos());
+        (*Y)[1] = new Scalar(VMax * (*X)[2]->sin());
         (*Y)[2] = new Scalar(omega);
         
-        position = Y;
+        double gamma = (*X)[2]->get();
+        while (gamma > 2 * PI)
+        {
+            gamma -= 2 * PI;
+            (*X)[2]->set(gamma);
+        }
+        
+        while (gamma < 0)
+        {
+            gamma += 2 * PI;
+            (*X)[2]->set(gamma);
+        }
+        
+        position = X;
         return Y;
     }
     

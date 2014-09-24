@@ -45,6 +45,38 @@ void Draw(std::list<T> * path, int B1, int indX, int B2, int indY)
     gp.send1d(xy_pts);
 }
 
+
+template<typename T>
+void Draw1D(std::list<T> * path, int B1, int indX)
+{
+    gnuplotio::Gnuplot gp;
+    
+    std::vector<std::pair<double, double> > xy_pts;
+    
+    int i = 0;
+    
+    double min = 1000000.0;
+    double max = -100000.0;
+    
+    typename std::list<T>::iterator it;
+    
+    for (it = path->begin(); it != path->end(); it++)
+    {
+        double x = i++;
+        double y = (*(*it))[B1]->get(indX)->get();
+        
+        if (y < min) min = y;
+        if (y > max) max = y;
+        
+        xy_pts.push_back(std::make_pair(x, y));
+        
+    }
+    
+    gp << "set xrange [-2:" << i + 2 << "]\nset yrange [" << min << ":" << max << "]\n";
+    gp << "plot '-' with lines title 'cubic' \n";
+    gp.send1d(xy_pts);
+}
+
 template<typename T>
 void Draw3D(std::list<T> * path, int indX, int indY, std::vector<Vector2D *> * targets)
 {
@@ -85,14 +117,8 @@ void Draw3D(std::list<T> * path, int indX, int indY, std::vector<Vector2D *> * t
         xy_pts3.push_back(std::make_pair(x3, y3));
         
     }
-    /*
-     for (double alpha = 0; alpha < 1; alpha += 1.0 / 24.0)
-     {
-     double theta = alpha*2.0*3.14159;
-     xy_pts.push_back(std::make_pair(cos(theta), sin(theta)));
-     }
-     */
-    gp << "set xrange [-2:300]\nset yrange [-2:200]\n";
+
+    gp << "set xrange [-20:280]\nset yrange [-100:200]\n";
     gp << "plot '-' with lines title 'dron 1', '-' with lines title 'dron 2', '-' with lines title 'dron 3', '-' with points title 'targets' \n";
     gp.send1d(xy_pts1);
     gp.send1d(xy_pts2);

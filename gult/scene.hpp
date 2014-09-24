@@ -35,15 +35,15 @@ public:
     
     Scene()
     {
-        double oMax = 0.2;
+        double oMax = 0.4;
         double vMax = 3;
         Drone1 = new drone(vMax, oMax);
         Drone2 = new drone(vMax, oMax);
         Drone3 = new drone(vMax, oMax);
         
-        Drone1->setPosition(new Vector3D(10.0, 10.0, 0.2));
-        Drone2->setPosition(new Vector3D(100.0, 10.0, 0.1));
-        Drone3->setPosition(new Vector3D(200.0, 10.0, -0.3));
+        Drone1->setPosition(new Vector3D(10.0, 10.0, 0.0));
+        Drone2->setPosition(new Vector3D(100.0, 10.0, -2.1));
+        Drone3->setPosition(new Vector3D(200.0, 180.0, 0.1));
         
         t1 = new Vector2D(30.0, 100.0);
         t2 = new Vector2D(90.0, 100.0);

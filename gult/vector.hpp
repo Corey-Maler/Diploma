@@ -8,7 +8,7 @@
 #ifndef VECTOR
 #define VECTOR
 
-#define EPS 0.000005
+#define EPS 0.0005
 
 #include <stdio.h>
 #include <cmath>
