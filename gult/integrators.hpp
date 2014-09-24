@@ -15,13 +15,16 @@
 namespace integrators {
     
     template <typename V>
-    std::list<V *> * Euler(V * x0, V * y)
+    std::list<V *> * Euler(V* (*fx)(V *), V * x0, double t0, double dt, double te)
     {
         std::list<V *> * path = new std::list<V *>();
         
-        for (int i = 0; i < 10; i++)
+        V* X = x0;
+        
+        for (double t = t0; t < te; t += dt)
         {
-            path->push_back((*x0) + *((*y) * i));
+            X = (*X) + *((*(fx(X))) * dt);
+            path->push_back(X);
         }
         
         return path;

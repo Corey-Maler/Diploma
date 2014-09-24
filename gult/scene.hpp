@@ -11,11 +11,13 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <list>
 
 #include "vector.hpp"
 #include "Vector2D.hpp"
 #include "integrators.hpp"
 #include "models.hpp"
+#include "draw.hpp"
 
 class Scene
 {
@@ -38,7 +40,10 @@ public:
         
         Vector3D * as = new Vector3D(0, 0, 0);
 
-        integrators::Steeps<Vector3D>(fx, as, 0.1);
+        std::list<Vector3D *> * path = integrators::Euler<Vector3D>(fx, as, 0, 0.1, 10);
+        
+        Draw<Vector3D *>(path, 0, 1);
+        
     }
 };
 
