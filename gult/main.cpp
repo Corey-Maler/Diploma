@@ -15,6 +15,9 @@
 #include "Vector2D.hpp"
 #include "models.hpp"
 #include "scene.hpp"
+#include "draw.hpp"
+
+#include "gnuplot-iostream.h"
 
 int fx(int x, int y)
 {
@@ -70,6 +73,20 @@ int main(int argc, const char * argv[]) {
     scene->Run();
     
     std::cout << "Time: " << (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << " ms" << std::endl;
+    
+    gnuplotio::Gnuplot gp;
+    
+    std::vector<std::pair<double, double> > xy_pts;
+    
+    for (double alpha = 0; alpha < 1; alpha += 1.0 / 24.0)
+    {
+        double theta = alpha*2.0*3.14159;
+        xy_pts.push_back(std::make_pair(cos(theta), sin(theta)));
+    }
+    
+    gp << "set xrange [-2:2]\nset yrange [-2:2]\n";
+    gp << "plot '-' with lines title 'cubic' \n";
+    gp.send1d(xy_pts);
     
     return 0;
 }

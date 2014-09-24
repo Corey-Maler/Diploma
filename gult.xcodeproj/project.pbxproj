@@ -30,6 +30,10 @@
 		B55A3BB219D1832500F8F509 /* Vector2D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vector2D.hpp; sourceTree = "<group>"; };
 		B55A3BB319D1854900F8F509 /* models.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = models.hpp; sourceTree = "<group>"; };
 		B55A3BB419D2036500F8F509 /* scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = scene.hpp; sourceTree = "<group>"; };
+		B55A3BB519D3140400F8F509 /* build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
+		B55A3BB619D3140400F8F509 /* gnuplot-iostream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "gnuplot-iostream.h"; sourceTree = "<group>"; };
+		B55A3BB719D3140400F8F509 /* tuple.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = tuple.hpp; sourceTree = "<group>"; };
+		B55A3BB819D315B800F8F509 /* draw.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = draw.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,12 +66,16 @@
 		B5385FE819D0231B00E61265 /* gult */ = {
 			isa = PBXGroup;
 			children = (
+				B55A3BB519D3140400F8F509 /* build.sh */,
+				B55A3BB619D3140400F8F509 /* gnuplot-iostream.h */,
+				B55A3BB719D3140400F8F509 /* tuple.hpp */,
 				B5385FE919D0231B00E61265 /* main.cpp */,
 				B55A3BB019D077A200F8F509 /* vector.hpp */,
 				B55A3BB119D0A41A00F8F509 /* integrators.hpp */,
 				B55A3BB219D1832500F8F509 /* Vector2D.hpp */,
 				B55A3BB319D1854900F8F509 /* models.hpp */,
 				B55A3BB419D2036500F8F509 /* scene.hpp */,
+				B55A3BB819D315B800F8F509 /* draw.hpp */,
 			);
 			path = gult;
 			sourceTree = "<group>";
