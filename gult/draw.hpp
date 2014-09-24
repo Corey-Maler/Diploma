@@ -17,7 +17,7 @@
 #include "gnuplot-iostream.h"
 
 template<typename T>
-void Draw(std::list<T> * path, int indX, int indY)
+void Draw(std::list<T> * path, int B1, int indX, int B2, int indY)
 {
     gnuplotio::Gnuplot gp;
     
@@ -27,8 +27,8 @@ void Draw(std::list<T> * path, int indX, int indY)
     
     for (it = path->begin(); it != path->end(); it++)
     {
-        double x = (*(*it))[indX]->get();
-        double y = (*(*it))[indY]->get();
+        double x = (*(*it))[B1]->get(indX)->get();
+        double y = (*(*it))[B2]->get(indY)->get();
         
         xy_pts.push_back(std::make_pair(x, y));
     

@@ -85,4 +85,6 @@ public:
 
 };
 
+typedef Vector<3, Vector3D *> BlockVector3d;
+
 #endif

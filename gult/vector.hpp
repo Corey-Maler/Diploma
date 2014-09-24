@@ -32,6 +32,11 @@ public:
         return arr[index];
     }
     
+    T & get (int index)
+    {
+        return arr[index];
+    }
+    
     Vector<dimension, T> * operator + (const Vector<dimension, T>& right)
     {
         Vector<dimension, T> * res = new Vector<dimension, T>();
