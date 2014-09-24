@@ -155,9 +155,9 @@ THE SOFTWARE.
 //#	define GNUPLOT_DEFAULT_COMMAND "pgnuplot -persist"
 // On Windows, gnuplot echos commands to stderr.  So we forward its stderr to the bit bucket.
 // Unfortunately, this means you will miss out on legitimate error messages.
-#	define GNUPLOT_DEFAULT_COMMAND "gnuplot -persist 2> NUL"
+#	define GNUPLOT_DEFAULT_COMMAND "/usr/local/bin/gnuplot -persist 2> NUL"
 #else
-#	define GNUPLOT_DEFAULT_COMMAND "gnuplot -persist"
+#	define GNUPLOT_DEFAULT_COMMAND "/usr/local/bin/gnuplot -persist"
 #endif
 #endif
 
