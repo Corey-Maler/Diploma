@@ -29,8 +29,9 @@ private:
     Vector2D * target;
     Vector3D * position;
     
-    double VMax;
-    double OMax;
+    double VMax; // Max velocity
+    double OMax; // Max angular velocity
+    double r; // Rotation radius
     
 public:
     /**
@@ -40,6 +41,7 @@ public:
     {
         VMax = vmax;
         OMax = omax;
+        r = vmax / omax;
     }
     
     void setTarget(Vector2D * targ)
@@ -57,12 +59,65 @@ public:
         return position;
     }
     
-    double AngleToTarget()
+    double AngleToTarget(Vector2D * targ)
     {
         double x = target->getX() - (*position)[0]->get();
         double y = target->getY() - (*position)[1]->get();
-        double a = atan2(y, x);
-        return a - position->getZ();
+        double a = atan2(y, x) - position->getZ();
+        if (a > PI) a -= 2 * PI;
+        if (a < -PI) a += 2 * PI;
+        return a;
+    }
+    
+    double PathToTarget(Vector2D * targ)
+    {
+        bool isLeft = false;
+        double ang = AngleToTarget(targ);
+        if (ang > 0) isLeft = true; // else false
+        
+        double theta;
+        
+        if (isLeft)
+        {
+            theta = position->getZ() + PI / 2.0;
+        }
+        else
+        {
+            theta = position->getZ() - PI / 2.0;
+        }
+        
+        Vector2D * P = new Vector2D(position->getX(), position->getY());
+        Vector2D * n = new Vector2D(r * cos(theta), r * sin(theta));
+        
+                    // R = targ - (P + n)
+        Vector2D * G = P->add(n);
+        Vector2D * R = targ->extract(G);
+        Vector2D * ni = n->inv();
+        
+        double beta = R->angleTo(n->inv());
+        double beta1 = ni->anticlockAngle(R);
+        if (!isLeft) beta1 *= -1;
+        double e = acos(r / R->norm());
+        
+        if (beta1 < 0)
+            beta = 2 * PI - beta;
+        
+        /*
+        if (beta1 > 0 && !isLeft)
+            beta = 2 * PI - beta;
+        */
+         
+        double eps = beta - e;
+        double L = r * eps;
+        
+        double Rn = R->norm();
+        double T = sqrt(Rn * Rn + r * r);
+        return L + T;
+    }
+    
+    double AngleToTarget()
+    {
+        return AngleToTarget(target);
     }
     
     Vector3D * rightPart(Vector3D * X)

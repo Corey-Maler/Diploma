@@ -25,10 +25,10 @@ int main(int argc, const char * argv[]) {
     
     scene->Run();
     
-    std::list<BlockVector3d *> * path = integrators::Euler<BlockVector3d>(scene, 0, 0.1, 150);
+    //std::list<BlockVector3d *> * path = integrators::Euler<BlockVector3d>(scene, 0, 0.1, 150);
     
-    Draw3D<BlockVector3d *>(path, 0, 1, scene->getTargets());
-    Draw1D(path, 0, 2);
+    //Draw3D<BlockVector3d *>(path, 0, 1, scene->getTargets());
+    //Draw1D(path, 0, 2);
     
     std::cout << "End of integration\n";
     std::cout << "Time: " << (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << " ms" << std::endl;

@@ -10,6 +10,7 @@
 #define VECTOR2D
 
 #include <stdio.h>
+#include <cmath>
 
 #include "vector.hpp"
 
@@ -40,6 +41,70 @@ public:
     {
         arr[1]->set(val);
     }
+    
+    Vector2D * inv()
+    {
+        return new Vector2D(-1.0 * arr[0]->get(), -1.0 * arr[1]->get());
+    }
+    
+    Vector2D * add (Vector2D * rh)
+    {
+        return new Vector2D(getX() + rh->getX(), getY() + rh->getY());
+    }
+    
+    Vector2D * extract (Vector2D * rh)
+    {
+        return new Vector2D(getX() - rh->getX(), getY() - rh->getY());
+    }
+    
+    double norm ()
+    {
+        double x = getX();
+        double y = getY();
+        return sqrt(x * x + y * y);
+    }
+    
+    double scalar(Vector2D * rh)
+    {
+        return (getX() * rh->getX() + getY() * rh->getY());
+    }
+    
+    double angleTo(Vector2D * rh)
+    {
+        return acos(scalar(rh) / (norm() * rh->norm()));
+    }
+    
+    double wedgeProduct(Vector2D * rh)
+    {
+        double a1 = getX();
+        double a2 = getY();
+        double b1 = rh->getX();
+        double b2 = rh->getY();
+        
+        return a1 * b2 - a2 * b1;
+    }
+    
+    double anticlockAngle(Vector2D * rh)
+    {
+        double det = wedgeProduct(rh);
+        
+        double sint = det / (norm() * rh->norm());
+        
+        return asin(sint);
+    }
+    
+    /*
+    Vector2D * operator + (Vector2D & rh)
+    {
+        Vector3D * res = new Vector3D(0, 0, 0);
+        for (int i = 0; i < 3; i++)
+        {
+            res->arr[i] = (*arr[i]) * a;
+        }
+        return res;
+    }
+     */
+
     
 };
 

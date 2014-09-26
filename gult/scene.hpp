@@ -35,19 +35,19 @@ public:
     
     Scene()
     {
-        double oMax = 0.4;
+        double oMax = 0.3;
         double vMax = 3;
         Drone1 = new drone(vMax, oMax);
-        Drone2 = new drone(vMax, oMax);
-        Drone3 = new drone(vMax, oMax);
+        Drone2 = new drone( 9.0, oMax);
+        Drone3 = new drone(16.0,  0.4);
         
         Drone1->setPosition(new Vector3D(10.0, 10.0, 0.0));
-        Drone2->setPosition(new Vector3D(100.0, 10.0, -2.1));
-        Drone3->setPosition(new Vector3D(200.0, 180.0, 0.1));
+        Drone2->setPosition(new Vector3D(200.0, 10.0, 0.0));
+        Drone3->setPosition(new Vector3D(200.0, 190.0, 0.0));
         
         t1 = new Vector2D(30.0, 100.0);
         t2 = new Vector2D(90.0, 100.0);
-        t3 = new Vector2D(210.0, 100.0);
+        t3 = new Vector2D(200.0, 100.0);
         
         Drone1->setTarget(t1);
         Drone2->setTarget(t2);
@@ -91,6 +91,10 @@ public:
     {
         //Drone = new drone(10, 10);
         std::cout << "RUN scene" <<std::endl;
+        
+        std::cout << "Path from d1 to t1: " << Drone1->PathToTarget(t1) << std::endl;
+        std::cout << "Path from d2 to t1: " << Drone2->PathToTarget(t1) << std::endl;
+        std::cout << "Path from d3 to t1: " << Drone3->PathToTarget(t1) << std::endl;
     }
 };
 
